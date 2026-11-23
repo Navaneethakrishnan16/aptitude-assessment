@@ -1,0 +1,22 @@
+services:
+  - type: web
+    name: aptitude-api
+    runtime: python
+    rootDir: backend
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python seed.py && uvicorn app.main:app --host 0.0.0.0 --port $PORT
+    healthCheckPath: /api/health
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: DATABASE_URL
+        sync: false
+      - key: JWT_SECRET_KEY
+        generateValue: true
+      - key: ADMIN_SEED_EMAIL
+        value: admin@example.com
+      - key: ADMIN_SEED_PASSWORD
+        sync: false
+      - key: CORS_ORIGINS
+        sync: false

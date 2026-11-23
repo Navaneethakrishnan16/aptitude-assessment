@@ -22,24 +22,53 @@ export default function Register() {
   const [submitting, setSubmitting] = useState(false);
   const navigate = useNavigate();
 
+  // Real-time validation function
+  function validateField(name: keyof CandidateForm, value: string): string {
+    switch (name) {
+      case "full_name":
+        if (!/^[A-Za-z ]{3,50}$/.test(value.trim())) return "3-50 characters, letters and spaces only";
+        break;
+      case "email":
+        if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value)) return "Enter a valid email address";
+        break;
+      case "age":
+        const age = Number(value);
+        if (!value || Number.isNaN(age) || age < 0 || age > 100) return "Age must be between 0 and 100";
+        break;
+      case "phone":
+        if (!/^\d{10}$/.test(value)) return "Phone number must be exactly 10 digits";
+        break;
+      case "qualification":
+        if (!value) return "Please select your highest qualification";
+        break;
+    }
+    return "";
+  }
+
+  function handleChange(name: keyof CandidateForm, value: string) {
+    // 1. Force phone to be strictly digits and max 10 chars
+    if (name === "phone") {
+      value = value.replace(/\D/g, "").slice(0, 10);
+    }
+
+    setForm({ ...form, [name]: value });
+
+    // 2. Run real-time validation and update errors
+    const error = validateField(name, value);
+    setErrors((prev) => ({
+      ...prev,
+      [name]: error,
+    }));
+  }
+
   function validate(): boolean {
     const next: Record<string, string> = {};
-    if (!/^[A-Za-z ]{2,50}$/.test(form.full_name.trim())) {
-      next.full_name = "2-50 characters, letters and spaces only";
-    }
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(form.email)) {
-      next.email = "Enter a valid email address";
-    }
-    const age = Number(form.age);
-    if (!form.age || Number.isNaN(age) || age < 18 || age > 60) {
-      next.age = "Age must be between 18 and 60";
-    }
-    if (!/^\d{10}$/.test(form.phone)) {
-      next.phone = "Phone number must be exactly 10 digits";
-    }
-    if (!form.qualification) {
-      next.qualification = "Please select your highest qualification";
-    }
+    (Object.keys(form) as Array<keyof CandidateForm>).forEach((key) => {
+      // Skip optional fields for form submission validation
+      if (key === "gender" || key === "city") return;
+      const err = validateField(key, form[key]);
+      if (err) next[key] = err;
+    });
     setErrors(next);
     return Object.keys(next).length === 0;
   }
@@ -67,6 +96,7 @@ export default function Register() {
     }
   }
 
+  // Generic field renderer
   function field(name: keyof CandidateForm, label: string, type = "text") {
     return (
       <div className="mb-4">
@@ -74,7 +104,9 @@ export default function Register() {
         <input
           type={type}
           value={form[name]}
-          onChange={(e) => setForm({ ...form, [name]: e.target.value })}
+          onChange={(e) => handleChange(name, e.target.value)}
+          // Add maxLength for phone directly to the input
+          maxLength={name === "phone" ? 10 : undefined}
           className="w-full rounded-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         />
         {errors[name] && <p className="text-sm text-red-600 mt-1">{errors[name]}</p>}
@@ -97,13 +129,31 @@ export default function Register() {
         {field("full_name", "Full Name")}
         {field("email", "Email ID", "email")}
         {field("age", "Age", "number")}
-        {field("phone", "Phone Number", "tel")}
+
+        {/* Custom Phone Field with +91 Prefix */}
+        <div className="mb-4">
+          <label className="block text-sm font-medium text-slate-700 mb-1">Phone Number</label>
+          <div className="flex">
+            <span className="inline-flex items-center px-3 rounded-l-md border border-r-0 border-slate-300 bg-slate-50 text-slate-500 sm:text-sm">
+              +91
+            </span>
+            <input
+              type="tel"
+              value={form.phone}
+              onChange={(e) => handleChange("phone", e.target.value)}
+              maxLength={10}
+              placeholder="10-digit mobile number"
+              className="flex-1 w-full rounded-none rounded-r-md border border-slate-300 px-3 py-2 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            />
+          </div>
+          {errors.phone && <p className="text-sm text-red-600 mt-1">{errors.phone}</p>}
+        </div>
 
         <div className="mb-4">
           <label className="block text-sm font-medium text-slate-700 mb-1">Gender (optional)</label>
           <select
             value={form.gender}
-            onChange={(e) => setForm({ ...form, gender: e.target.value })}
+            onChange={(e) => handleChange("gender", e.target.value)}
             className="w-full rounded-md border border-slate-300 px-3 py-2"
           >
             <option value="">Prefer not to say</option>
@@ -117,7 +167,7 @@ export default function Register() {
           <label className="block text-sm font-medium text-slate-700 mb-1">Highest Qualification</label>
           <select
             value={form.qualification}
-            onChange={(e) => setForm({ ...form, qualification: e.target.value })}
+            onChange={(e) => handleChange("qualification", e.target.value)}
             className="w-full rounded-md border border-slate-300 px-3 py-2"
           >
             <option value="">Select...</option>

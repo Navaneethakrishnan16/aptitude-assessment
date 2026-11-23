@@ -18,15 +18,17 @@ class CandidateCreate(BaseModel):
     @classmethod
     def validate_name(cls, v: str) -> str:
         v = v.strip()
-        if not re.fullmatch(r"[A-Za-z ]{2,50}", v):
-            raise ValueError("Full name must be 2-50 characters, letters and spaces only")
+        # Changed from {2,50} to {3,50}
+        if not re.fullmatch(r"[A-Za-z ]{3,50}", v):
+            raise ValueError("Full name must be 3-50 characters, letters and spaces only")
         return v
 
     @field_validator("age")
     @classmethod
     def validate_age(cls, v: int) -> int:
-        if not (18 <= v <= 60):
-            raise ValueError("Age must be between 18 and 60")
+        # Changed from 18-60 to 0-100
+        if not (0 <= v <= 100):
+            raise ValueError("Age must be between 0 and 100")
         return v
 
     @field_validator("phone")

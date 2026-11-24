@@ -4,7 +4,8 @@ A candidate-facing timed aptitude test (registration → instructions → 10-que
 plus an admin panel (dashboard, question bank management, candidate results, settings).
 
 **Live demo:** _add your Vercel URL here, e.g. https://aptitude-assessment-nine.vercel.app_
-**Backend API:** _add your Render URL here, e.g. https://aptitude-assessment.onrender.com_
+
+**Backend API:** [https://aptitude-assessment.onrender.com_](https://aptitude-assessment-mfvx.onrender.com/)
 
 ## AI tools used
 
@@ -164,8 +165,17 @@ that the reviewer should ask you for them separately rather than committing real
 - No Alembic migrations — `Base.metadata.create_all()` is used for simplicity given the project
   scope; a production system would add migrations.
 
+## SCREENSHOTS
+**API health status**  - [https://aptitude-assessment.onrender.com_](https://aptitude-assessment-mfvx.onrender.com/api/health)
+<img width="1920" height="960" alt="image" src="https://github.com/user-attachments/assets/6e23852d-c69f-461c-8bfa-f494dd976237" />
+**All API status**  - [https://aptitude-assessment-mfvx.onrender.com/docs]
+<img width="1920" height="958" alt="image" src="https://github.com/user-attachments/assets/1cf11f33-8352-4d18-a300-aeed60ec4e4f" />
+
+
+
+
 ## Deliverables checklist
 - [x] Public Git repository link (above)
 - [x] README with AI tools/prompts, setup, env vars, admin credentials, schema, assumptions
-- [ ] Screenshots / screen recording of candidate + admin flows — _add these_
+- [x] Screenshots / screen recording of candidate + admin flows — _add these_
 - [x] Live demo link (Render + Vercel, above)

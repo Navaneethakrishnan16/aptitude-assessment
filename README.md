@@ -4,7 +4,7 @@ A candidate-facing timed aptitude test (registration → instructions → 10-que
 plus an admin panel (dashboard, question bank management, candidate results, settings).
 
 **Live demo:** _add your Vercel URL here, e.g. https://aptitude-assessment-nine.vercel.app_
-**Backend API:** _add your Render URL here, e.g. https://aptitude-assessment.onrender.com_
+**Backend API:** _add your Render URL here, e.g. https://aptitude-assessment-mfvx.onrender.com/
 
 ## AI tools used
 
@@ -164,8 +164,6 @@ that the reviewer should ask you for them separately rather than committing real
 - No Alembic migrations — `Base.metadata.create_all()` is used for simplicity given the project
   scope; a production system would add migrations.
 
-## Deliverables checklist
-- [x] Public Git repository link (above)
-- [x] README with AI tools/prompts, setup, env vars, admin credentials, schema, assumptions
-- [ ] Screenshots / screen recording of candidate + admin flows — _add these_
-- [x] Live demo link (Render + Vercel, above)
+## Screenshots
+
+ ![API health status](./screenshots/api-health.png)

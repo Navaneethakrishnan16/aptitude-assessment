@@ -3,8 +3,11 @@
 A candidate-facing timed aptitude test (registration → instructions → 10-question test → result)
 plus an admin panel (dashboard, question bank management, candidate results, settings).
 
-**Live demo:** _add your Vercel URL here, e.g. https://aptitude-assessment-nine.vercel.app_
-**Backend API:** _add your Render URL here, e.g. https://aptitude-assessment-mfvx.onrender.com/
+**Live demo:** : https://aptitude-assessment-nine.vercel.app/
+**Admin login:** : https://aptitude-assessment-nine.vercel.app/admin/login
+**Backend API:** : https://aptitude-assessment-mfvx.onrender.com/
+**Backend API Health status:** : https://aptitude-assessment-mfvx.onrender.com/api/health
+**Backend API Docs:** : https://aptitude-assessment-mfvx.onrender.com/docs
 
 ## AI tools used
 

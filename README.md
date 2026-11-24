@@ -194,6 +194,11 @@ that the reviewer should ask you for them separately rather than committing real
 ![API health check](./Screenshots/api-health.png)
 ![API docs (Swagger UI)](./Screenshots/api-docs.png)
 
+### Database
+
+![Candidates attempts](./Screenshots/candidate-db-attempts.png)
+![Admin Credentials](./Screenshots/database.png)
+
 ## Deliverables checklist
 - [x] Public Git repository link (above)
 - [x] README with AI tools/prompts, setup, env vars, admin credentials, schema, assumptions

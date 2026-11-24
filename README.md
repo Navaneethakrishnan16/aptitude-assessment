@@ -3,11 +3,11 @@
 A candidate-facing timed aptitude test (registration → instructions → 10-question test → result)
 plus an admin panel (dashboard, question bank management, candidate results, settings).
 
-**Live demo:** : https://aptitude-assessment-nine.vercel.app/
-**Admin login:** : https://aptitude-assessment-nine.vercel.app/admin/login
-**Backend API:** : https://aptitude-assessment-mfvx.onrender.com/
-**Backend API Health status:** : https://aptitude-assessment-mfvx.onrender.com/api/health
-**Backend API Docs:** : https://aptitude-assessment-mfvx.onrender.com/docs
+**Live demo:** https://aptitude-assessment-nine.vercel.app/
+**Admin login:** https://aptitude-assessment-nine.vercel.app/admin/login
+**Backend API:** https://aptitude-assessment-mfvx.onrender.com/
+**Backend API health status:** https://aptitude-assessment-mfvx.onrender.com/api/health
+**Backend API docs:** https://aptitude-assessment-mfvx.onrender.com/docs
 
 ## AI tools used
 
@@ -169,4 +169,29 @@ that the reviewer should ask you for them separately rather than committing real
 
 ## Screenshots
 
- ![API health status](./screenshots/api-health.png)
+### Candidate flow
+![Registration form](./Screenshots/Register.png)
+![Registration validation error](./Screenshots/register-error.png)
+![Test instructions](./Screenshots/Test-Instructions.png)
+![Test in progress with question palette](./Screenshots/Question-Palette.png)
+![Submitting the test](./Screenshots/submit-test.png)
+![Result page (candidate view)](./Screenshots/result.png)
+
+### Admin flow
+![Admin login](./Screenshots/admin-Login.png)
+![Admin dashboard](./Screenshots/Aptitude-Dashboard.png)
+![Admin question management](./Screenshots/admin-editable-questions.png)
+![Admin settings](./Screenshots/admin-settings.png)
+![Candidate results list (admin)](./Screenshots/candidate-result.png)
+![Candidate result detail view (admin)](./Screenshots/candidate-result-view.png)
+![CSV export](./Screenshots/candidate-export.png)
+
+### API
+![API health check](./Screenshots/api-health.png)
+![API docs (Swagger UI)](./Screenshots/api-docs.png)
+
+## Deliverables checklist
+- [x] Public Git repository link (above)
+- [x] README with AI tools/prompts, setup, env vars, admin credentials, schema, assumptions
+- [x] Screenshots of candidate + admin flows (above)
+- [x] Live demo link (Render + Vercel, above)
